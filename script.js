@@ -16,14 +16,22 @@ function type(){
 type();
 
 // Scroll Fade Animation
+// सुधरा हुआ कोड
 const faders = document.querySelectorAll(".fade");
-window.addEventListener("scroll", () => {
+
+const appearOnScroll = () => {
   faders.forEach(el => {
-    if(el.getBoundingClientRect().top < window.innerHeight - 100){
+    const rect = el.getBoundingClientRect();
+    if (rect.top < window.innerHeight - 50) {
       el.classList.add("show");
     }
   });
-});
+};
+
+// पेज लोड होते ही और स्क्रॉल करने पर, दोनों समय चेक करेगा
+window.addEventListener("load", appearOnScroll);
+window.addEventListener("scroll", appearOnScroll);
+
 
 // Particle Background
 const c = document.getElementById("particles");
@@ -51,3 +59,4 @@ function draw(){
   requestAnimationFrame(draw);
 }
 draw();
+
